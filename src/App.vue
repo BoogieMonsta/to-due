@@ -5,7 +5,7 @@ import ToDue from './components/ToDue.vue'
 </script>
 
 <template>
-  <ToDue title="To-Due" tagline="a simple To-Do app made in Vue.JS" id="app"/>
+  <ToDue title="To-Due" tagline="a simple To-Do app made in Vue.JS"/>
 </template>
 
 <style>

@@ -1,6 +1,7 @@
 <script setup>
 
 import {ref} from "vue";
+import { Icon } from '@iconify/vue';
 
 defineProps({
   title: String,
@@ -40,17 +41,21 @@ function clearAll() {
 <template>
   <h1>{{ title }}</h1>
   <p class="tagline"><em>{{ tagline }}</em></p>
-  <form @submit.prevent="addToDo">
-    <label>I need to... </label>
+  <form @submit.prevent="addToDo" class="form">
+    <label class="inputLabel">I need to... </label>
     <input v-model="newToDo" name="newToDo">
-    <button>Add</button>
+    <button class="addToDoBtn">
+      <Icon icon="carbon:add-filled" :inline="true" :style="{ fontSize: '36px' }"/>
+    </button>
   </form>
   <button @click="markAllDone">Mark all done</button>
   <button @click="clearAll">Clear all</button>
   <ul>
     <li v-for="(toDo, index) in lstToDos" :key="toDo.id" class="toDo">
       <h3 :class="{ done: toDo.done }" @click="toggleDone(toDo)">{{ toDo.task }}
-        <button @click="deleteToDo(index)" class="deleteBtn">Delete</button>
+        <button @click="deleteToDo(index)" class="deleteBtn">
+          <Icon icon="gridicons:cross-circle" :inline="true"/>
+        </button>
       </h3>
     </li>
   </ul>
@@ -69,6 +74,16 @@ button {
   margin: 1em;
   color: white;
   background: #42b983;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+}
+
+.inputLabel {
+  align-self: center;
+  margin-right: 1em;
 }
 
 input {
@@ -93,6 +108,13 @@ input {
 }
 
 .deleteBtn {
+  color: indianred;
+  background: none;
+}
+
+.addToDoBtn {
+  color: #42b983;
+  background: none;
 }
 
 
