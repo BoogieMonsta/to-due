@@ -50,13 +50,14 @@ function clearAll() {
   </form>
   <button @click="markAllDone">Mark all done</button>
   <button @click="clearAll">Clear all</button>
-  <ul>
+  <ul class="toDoWrapper">
     <li v-for="(toDo, index) in lstToDos" :key="toDo.id" class="toDo">
-      <h3 :class="{ done: toDo.done }" @click="toggleDone(toDo)">{{ toDo.task }}
+      <span :class="{ done: toDo.done }" @click="toggleDone(toDo)">
+        <strong>{{ toDo.task }}</strong>
         <button @click="deleteToDo(index)" class="deleteBtn">
           <Icon icon="gridicons:cross-circle" :inline="true"/>
         </button>
-      </h3>
+      </span>
     </li>
   </ul>
 </template>
@@ -90,6 +91,8 @@ input {
   border-radius: 0.3em;
   padding: 0.8em;
   border-width: 0.1em;
+  max-height: 20px;
+  align-self: center;
 }
 
 .tagline {
@@ -101,6 +104,11 @@ input {
 .toDo {
   cursor: pointer;
   list-style-type: none;
+  /*margin-top: -73px;*/
+}
+
+.toDoWrapper {
+  /*margin-top: 73px;*/
 }
 
 .done {
