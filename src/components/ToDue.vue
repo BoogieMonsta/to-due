@@ -48,8 +48,8 @@ function clearAll() {
       <Icon icon="carbon:add-filled" :inline="true" :style="{ fontSize: '36px' }"/>
     </button>
   </form>
-  <button @click="markAllDone">Mark all done</button>
-  <button @click="clearAll">Clear all</button>
+  <button class="btn" @click="markAllDone">Mark all done</button>
+  <button class="btn" @click="clearAll">Clear all</button>
   <ul class="toDoWrapper">
     <li v-for="(toDo, index) in lstToDos" :key="toDo.id" class="toDo">
       <span :class="{ done: toDo.done }" @click="toggleDone(toDo)">
@@ -67,14 +67,15 @@ a {
   color: #42b983;
 }
 
-button {
+.btn {
   padding: 0.75em 0.85em 0.75em 0.85em;
   letter-spacing: 0.01em;
   border-radius: 0.3em;
   border: none;
-  margin: 1em;
+  margin: 4em 0.5em 0 0.5em;
   color: white;
   background: #42b983;
+  cursor: pointer;
 }
 
 .form {
@@ -84,7 +85,7 @@ button {
 
 .inputLabel {
   align-self: center;
-  margin-right: 1em;
+  margin-right: 0.5em;
 }
 
 input {
@@ -104,11 +105,6 @@ input {
 .toDo {
   cursor: pointer;
   list-style-type: none;
-  /*margin-top: -73px;*/
-}
-
-.toDoWrapper {
-  /*margin-top: 73px;*/
 }
 
 .done {
@@ -118,11 +114,16 @@ input {
 .deleteBtn {
   color: indianred;
   background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .addToDoBtn {
   color: #42b983;
   background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 0.5em;
 }
 
 
