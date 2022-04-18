@@ -9,7 +9,7 @@ defineProps({
 })
 
 const newToDo = ref('');
-const lstToDos = ref([]);
+let lstToDos = ref([]);
 
 function addToDo() {
   lstToDos.value.push({
@@ -32,8 +32,20 @@ function markAllDone() {
   lstToDos.value.forEach(toDo => toDo.done = true);
 }
 
+function markAllToDo() {
+  lstToDos.value.forEach(toDo => toDo.done = false);
+}
+
 function clearAll() {
   lstToDos.value = [];
+}
+
+function clearDone() {
+  lstToDos.value.forEach(toDo => {
+    if (toDo.done) {
+      lstToDos.value.splice(lstToDos.value.indexOf(toDo), 1);
+    }
+  });
 }
 
 </script>
@@ -48,8 +60,10 @@ function clearAll() {
       <Icon icon="carbon:add-filled" :inline="true" :style="{ fontSize: '36px' }"/>
     </button>
   </form>
-  <button class="btn" @click="markAllDone">Mark all done</button>
-  <button class="btn" @click="clearAll">Clear all</button>
+  <button class="btn" @click="markAllDone">ALL DONE</button>
+  <button class="btn" @click="markAllToDo">ALL TO DO</button>
+  <button class="btn" @click="clearDone">CLEAR DONE</button>
+  <button class="btn" @click="clearAll">CLEAR ALL</button>
   <ul class="toDoWrapper">
     <li v-for="(toDo, index) in lstToDos" :key="toDo.id" class="toDo">
       <span :class="{ done: toDo.done }" @click="toggleDone(toDo)">
@@ -69,8 +83,9 @@ a {
 
 .btn {
   padding: 0.75em 0.85em 0.75em 0.85em;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.04em;
   border-radius: 0.3em;
+  font-weight: bold;
   border: none;
   margin: 4em 0.5em 0 0.5em;
   color: white;
@@ -105,10 +120,12 @@ input {
 .toDo {
   cursor: pointer;
   list-style-type: none;
+  line-height: 2em;
 }
 
 .done {
   text-decoration: line-through;
+  color: darkgray;
 }
 
 .deleteBtn {
